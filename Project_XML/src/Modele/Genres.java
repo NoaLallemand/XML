@@ -5,4 +5,9 @@ public class Genres {
 
     public String genre;
     public int id;
+
+    public Genres()
+    {
+
+    };
 }

@@ -4,7 +4,11 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.StringTokenizer;
+
 import Modele.*;
 
 public class Container {
@@ -33,7 +37,7 @@ public class Container {
             while ((line = bufferedReader.readLine()) != null) {
 
                 //appelle de la fonction parse qui va décomposer chaque ligne du buffer
-                parse(bufferedReader);
+                //parse(line);
 
                 System.out.println(line);
                 System.out.println("=====================================================================");
@@ -55,68 +59,88 @@ public class Container {
     //le probleme ici est que a chaque varibale je crée un string il faudras savoir
     //ou son les dates et autre type pour crée une varibale de ce meme type en conséquence
     //////////////////////////////////////////////////////////////////////////////////////
-    public void parse(BufferedReader buffer) throws IOException
+    public void parse(String ligne) throws IOException
     {
-        try{
-            Movie film = new Movie();
-            int PlaceMovie = 0;
-            char caractere;
-            StringBuilder motBuilder = new StringBuilder();
+        Movie film = new Movie();
+        int i = 0;
 
-            //lis charactere par caractere
-            while ((caractere = (char) buffer.read()) != -1)
+        //va crée un tableau de string chaque case fait
+        String[] elements = ligne.split("\u2023");
+
+        for(String element : elements)
+        {
+            switch(i)
             {
-                //si un charactere est un separateur alors on remplis la variable concerner de film et on incremente placemovie
-                if("/" == caractere)
-                {
-                    String mot = motBuilder.toString();
-                    switch (PlaceMovie)
-                    {
-                        case 0 :
-                            break;
-                        case 1 : film.setTitle(mot);
-                            break;
-                        case 2 : film.setReleaseDate(mot);
-                            break;
-                        case 3 :
-                            break;
-                        case 4 :
-                            break;
-                        case 5 :
-                            break;
-                        case 6 :
-                            break;
-                        case 7 :
-                            break;
-                        case 8 :
-                            break;
-                        case 9 :
-                            break;
-                        case 10 :
-                            break;
-                        case 11 :
-                            break;
-                        case 12 :
-                            break;
-                        case 13 ://attention ici tableau a remplir
-                            break;
-                        case 14 ://attention ici tableau a remplir
-                            break;
-                        case 15 ://attention ici tableau a remplir
-                            break;
+                case 0 :
+                    int id = Integer.parseInt(elements[i]);
+                    film.setId(id);
+                    break;
+                case 1 :
+                    film.setTitle(elements[i]);
+                    break;
+                case 2 :
+                    film.setOriginalTitle(elements[i]);
+                    break;
+                case 3 :
+
+                    LocalDate date = LocalDate.parse(elements[i]);
+                    film.setReleaseDate(date);
+                    break;
+                case 4 :
+                    film.setStatus(elements[i]);
+                    break;
+                case 5 :
+                    int voteaverage = Integer.parseInt(elements[i]);
+                    film.setVote_average(voteaverage);
+                    break;
+                case 6 :
+                    int votecount = Integer.parseInt(elements[i]);
+                    film.setVote_count(votecount);
+                    break;
+                case 7 :
+                    int dureefilm = Integer.parseInt(elements[i]);
+                    film.setRuntime(dureefilm);
+                    break;
+                case 8 :
+                    film.setCertification(elements[i]);
+                    break;
+                case 9 :
+                    film.setPoster_path(elements[i]);
+                    break;
+                case 10 :
+                    int budget = Integer.parseInt(elements[i]);
+                    film.setBudget(budget);
+                    break;
+                case 11 :
+                    film.setTagline(elements[i]);
+                    break;
+                case 12 :
+                    String[] Tabgenres = elements[12].split("\u2024");
+                    Genres genre = new Genres();
+
+                    for(String element1 : Tabgenres) {
+
                     }
-                    PlaceMovie++;
-                }
-                else
-                {
-                    //ici on compose le champs qui va etre mis dans mon obj
-                    char caractereLu = (char) caractere;
-                    motBuilder.append(caractereLu);
-                }
+
+                    break;
+                case 13 :
+                    String[] Tabreals = elements[13].split("\u2024");
+
+                    for(String element2 : Tabreals) {
+
+                    }
+
+                    break;
+                case 14 :
+                    String[] Tabacteurs = elements[14].split("\u2024");
+
+                    for(String element3 : Tabacteurs) {
+
+                    }
+
+                    break;
             }
-        }
-        catch(IOException e){
-            System.out.print("erreur de lecture de charactere");
+            i++;
         }
     }
 

@@ -1,21 +1,18 @@
 package Modele;
 
-import Modele.Acteur;
-import Modele.Genres;
-import Modele.Realisateur;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Movie {
     private int id;
     private String title;
     private String originalTitle;
-    private Date releaseDate;
+    private LocalDate releaseDate;
     private String status;
     private int vote_average;
     private int vote_count;
     private int runtime;
-    private float certification;
+    private String certification;
     private String poster_path;
     private int budget;
     private String tagline;
@@ -30,7 +27,7 @@ public class Movie {
     public void setId(int id) {this.id = id;}
     public void setTitle(String title) {this.title = title;}
     public void setOriginalTitle(String originalTitle) {this.originalTitle = originalTitle;}
-    public void setReleaseDate(Date releaseDate) {this.releaseDate = releaseDate;}
+    public void setReleaseDate(LocalDate releaseDate) {this.releaseDate = releaseDate;}
     public void setStatus(String status) {this.status = status;}
 
     public void setVote_average(int vote_average) {
@@ -45,7 +42,7 @@ public class Movie {
         this.runtime = runtime;
     }
 
-    public void setCertification(float certification) {
+    public void setCertification(String certification) {
         this.certification = certification;
     }
 
@@ -85,7 +82,7 @@ public class Movie {
         return originalTitle;
     }
 
-    public Date getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
@@ -105,7 +102,7 @@ public class Movie {
         return runtime;
     }
 
-    public float getCertification() {
+    public String getCertification() {
         return certification;
     }
 
