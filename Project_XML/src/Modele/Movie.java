@@ -9,7 +9,7 @@ public class Movie {
     private String originalTitle;
     private LocalDate releaseDate;
     private String status;
-    private int vote_average;
+    private float vote_average;
     private int vote_count;
     private int runtime;
     private String certification;
@@ -18,7 +18,7 @@ public class Movie {
     private String tagline;
     private ArrayList<Genres> genres = new ArrayList<Genres>();
     private ArrayList<Realisateur> directors = new ArrayList<Realisateur>();
-    private ArrayList<Acteur> actor = new ArrayList<Acteur>();
+    private ArrayList<Acteur> actors = new ArrayList<Acteur>();
     public Movie()
     {
 
@@ -30,7 +30,7 @@ public class Movie {
     public void setReleaseDate(LocalDate releaseDate) {this.releaseDate = releaseDate;}
     public void setStatus(String status) {this.status = status;}
 
-    public void setVote_average(int vote_average) {
+    public void setVote_average(float vote_average) {
         this.vote_average = vote_average;
     }
 
@@ -66,8 +66,8 @@ public class Movie {
         this.directors = directors;
     }
 
-    public void setActor(ArrayList<Acteur> actor) {
-        this.actor = actor;
+    public void setActors(ArrayList<Acteur> actors) {
+        this.actors = actors;
     }
 
     public int getId() {
@@ -90,7 +90,7 @@ public class Movie {
         return status;
     }
 
-    public int getVote_average() {
+    public float getVote_average() {
         return vote_average;
     }
 
@@ -126,7 +126,59 @@ public class Movie {
         return directors;
     }
 
-    public ArrayList<Acteur> getActor() {
-        return actor;
+    public ArrayList<Acteur> getActors() {
+        return actors;
+    }
+
+    @Override
+    public String toString() {
+        return "id: " + getId() +
+                "\ntitle: " + getTitle() +
+                "\noriginal_title: " + getOriginalTitle() +
+                "\nrelease_date: " + getReleaseDate().toString() +
+                "\nstatus: " +getStatus() +
+                "\nvote_average: " + getVote_average() +
+                "\nvote_count: " + getVote_count() +
+                "\nruntime: " + getRuntime() +
+                "\ncertification: " + getCertification() +
+                "\nposter_path: " + getPoster_path() +
+                "\nbudget: " + getBudget() +
+                "\ntagline: " + getTagline() +
+                getGenresToString() +
+                getDirectorsToString() +
+                getActorsToString();
+    }
+
+    private String getGenresToString()
+    {
+        StringBuilder genresStr = new StringBuilder("\ngenres: [");
+        for(Genres g: genres)
+        {
+            genresStr.append("\n\t{\n\t\tid: " + g.id + "\n\t\tgenre: " + g.genre + "\n\t},");
+        }
+        genresStr.append("\n]");
+        return genresStr.toString();
+    }
+
+    private String getDirectorsToString()
+    {
+        StringBuilder directorsStr = new StringBuilder("\ndirectors: [ ");
+        for(Realisateur r: directors)
+        {
+            directorsStr.append("\n\t{\n\t\tid: " + r.id + "\n\t\tnom: " + r.nom + "\n\t},");
+        }
+        directorsStr.append("\n]");
+        return directorsStr.toString();
+    }
+
+    private String getActorsToString()
+    {
+        StringBuilder actorsStr = new StringBuilder("\nactors: [ ");
+        for(Acteur a: actors)
+        {
+            actorsStr.append("\n\t{\n\t\tid: " + a.id + "\n\t\tnom: " + a.nom + "\n\t\tpersonnage: " + a.personnage + "\n\t},");
+        }
+        actorsStr.append("\n]");
+        return actorsStr.toString();
     }
 }

@@ -9,5 +9,5 @@ public class Genres {
     public Genres()
     {
 
-    };
+    }
 }
