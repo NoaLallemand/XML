@@ -7,6 +7,19 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.time.LocalDate;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.DocumentBuilder;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
 
 import Modele.*;
 
@@ -228,7 +241,67 @@ public class Container {
         return val;
     }
 
-    public void writeXML() {
+    //cette fonction va utiliser le tableau de film du singleton pour crée un fichier xml contenant tout les films
+    public void writeXML()
+    {
+        try
+        {
+            //  responsable de la configuration de la création de documents XML
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 
+            // Il prend en charge la création d'éléments, d'attributs, de texte
+            DocumentBuilder builder = factory.newDocumentBuilder();
+
+            // Une fois que vous avez un DocumentBuilder, vous utilisez cette instance pour créer un nouveau
+            // document vide (Document). Ce document est l'objet central avec lequel vous travaillez
+            // pour créer la structure du fichier XML. Vous ajoutez des éléments, des attributs et d'autres nœuds à ce document.
+            Document document = builder.newDocument();
+
+            // ici on stocke des film donc voilas
+            Element rootElement = document.createElement("movies");
+            document.appendChild(rootElement);
+
+            //ici pour chaque film on va alors ajouter element par element
+            for (Movie film : films) {
+                Element movieElement = document.createElement("movie");
+                rootElement.appendChild(movieElement);
+
+                // Ajoutez les données du film comme des éléments à l'élément "movie"
+                Element idElement = document.createElement("id");
+                idElement.appendChild(document.createTextNode(String.valueOf(film.getId())));
+                movieElement.appendChild(idElement);
+
+                Element titleElement = document.createElement("title");
+                titleElement.appendChild(document.createTextNode(film.getTitle()));
+                movieElement.appendChild(titleElement);
+
+                Element originalTitleElement = document.createElement("originalTitle");
+                originalTitleElement.appendChild(document.createTextNode(film.getOriginalTitle()));
+                movieElement.appendChild(originalTitleElement);
+
+                Element releaseDateElement = document.createElement("releaseDate");
+                releaseDateElement.appendChild(document.createTextNode(film.getReleaseDate().toString()));
+                movieElement.appendChild(releaseDateElement);
+
+                Element statusElement = document.createElement("status");
+                statusElement.appendChild(document.createTextNode(film.getStatus()));
+                movieElement.appendChild(statusElement);
+
+            }
+
+            // Enregistrez le document XML dans un fichier
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(document);
+            StreamResult result = new StreamResult(new File("movies.xml"));
+            transformer.transform(source, result);
+
+            System.out.println("Fichier XML créé avec succès.");
+        }
+        catch (TransformerException | ParserConfigurationException e)
+        {
+            e.printStackTrace();
+        }
     }
+
 }
