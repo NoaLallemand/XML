@@ -40,29 +40,24 @@ public class Container {
 
     public void Lecture() {
         try {
-            // Spécifiez le chemin du fichier que vous souhaitez lire
-            //File file = new File("C:\\BLOC_3\\XML LABO\\XML\\1000movies.txt");
-            File file = new File("C:\\Users\\utilisateur\\OneDrive\\Cours informatique\\Bloc 3\\Bases de données avancées et XML\\Laboratoire\\XML\\1000movies.txt");
+
+            String path = System.getProperty("user.dir");
+            String filePath = path + "\\1000movies.txt";
+            File file = new File(filePath);
 
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
             String line;
-            // Lisez chaque ligne du fichier
+            // Lit chaque ligne du fichier
             while ((line = bufferedReader.readLine()) != null) {
 
                 //appelle de la fonction parse qui va décomposer chaque ligne du buffer
                 Movie m = parse(line);
-
-                System.out.println(m.toString());
-                System.out.println("=====================================================================");
-
                 films.add(m);
-                //System.out.println(line);
-                //System.out.println("=====================================================================");
             }
 
-            // Fermez le BufferedReader et le FileReader après avoir terminé
+            // Ferme le BufferedReader et le FileReader après avoir terminé
             bufferedReader.close();
             fileReader.close();
 
@@ -287,6 +282,78 @@ public class Container {
                 statusElement.appendChild(document.createTextNode(film.getStatus()));
                 movieElement.appendChild(statusElement);
 
+                Element voteAverageElement = document.createElement("voteAverage");
+                voteAverageElement.appendChild(document.createTextNode(String.valueOf(film.getVote_average())));
+                movieElement.appendChild(voteAverageElement);
+
+                Element voteCountElement = document.createElement("voteCount");
+                voteCountElement.appendChild(document.createTextNode(String.valueOf(film.getVote_count())));
+                movieElement.appendChild(voteCountElement);
+
+                Element runtimeElement = document.createElement("runtime");
+                runtimeElement.appendChild(document.createTextNode(String.valueOf(film.getRuntime())));
+                movieElement.appendChild(runtimeElement);
+
+                Element certificationElement = document.createElement("certification");
+                certificationElement.appendChild(document.createTextNode(film.getCertification()));
+                movieElement.appendChild(certificationElement);
+
+                Element posterPathElement = document.createElement("posterPath");
+                posterPathElement.appendChild(document.createTextNode(film.getPoster_path()));
+                movieElement.appendChild(posterPathElement);
+
+                Element budgetElement = document.createElement("budget");
+                budgetElement.appendChild(document.createTextNode(String.valueOf(film.getBudget())));
+                movieElement.appendChild(budgetElement);
+
+                Element taglineElement = document.createElement("tagline");
+                taglineElement.appendChild(document.createTextNode(film.getTagline()));
+                movieElement.appendChild(taglineElement);
+
+                Element listGenresElement = document.createElement("genres");
+                for(Genres genre: film.getGenres()) {
+                    Element genreElement = document.createElement("genre");
+                    listGenresElement.appendChild(genreElement);
+
+                    Element idGenreElement = document.createElement("id");
+                    idGenreElement.appendChild(document.createTextNode(String.valueOf(genre.id)));
+                    genreElement.appendChild(idGenreElement);
+
+                    Element nomGenreElement = document.createElement("nom");
+                    nomGenreElement.appendChild(document.createTextNode(genre.genre));
+                    genreElement.appendChild(nomGenreElement);
+                }
+                movieElement.appendChild(listGenresElement);
+
+                Element listRealElement = document.createElement("directors");
+                for(Realisateur real: film.getDirectors()) {
+                    Element directorElement = document.createElement("director");
+                    listRealElement.appendChild(directorElement);
+
+                    Element idDirectorElement = document.createElement("id");
+                    idDirectorElement.appendChild(document.createTextNode(String.valueOf(real.id)));
+                    directorElement.appendChild(idDirectorElement);
+
+                    Element nomDirectorElement = document.createElement("nom");
+                    nomDirectorElement.appendChild(document.createTextNode(real.nom));
+                    directorElement.appendChild(nomDirectorElement);
+                }
+                movieElement.appendChild(listRealElement);
+
+                Element listActeursElement = document.createElement("actors");
+                for(Acteur acteur: film.getActors()) {
+                    Element acteurElement = document.createElement("actor");
+                    listActeursElement.appendChild(acteurElement);
+
+                    Element idActeurElement = document.createElement("id");
+                    idActeurElement.appendChild(document.createTextNode(String.valueOf(acteur.id)));
+                    acteurElement.appendChild(idActeurElement);
+
+                    Element nomActeurElement = document.createElement("nom");
+                    nomActeurElement.appendChild(document.createTextNode(acteur.nom));
+                    acteurElement.appendChild(nomActeurElement);
+                }
+                movieElement.appendChild(listActeursElement);
             }
 
             // Enregistrez le document XML dans un fichier
