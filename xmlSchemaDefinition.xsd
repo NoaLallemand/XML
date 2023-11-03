@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="movies">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="movie" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="id" type="xs:integer"/>
+                            <xs:element name="title" type="xs:string"/>
+                            <xs:element name="originalTitle" type="xs:string"/>
+                            <xs:element name="releaseDate" type="xs:date"/>
+                            <xs:element name="status" type="xs:string"/>
+                            <xs:element name="voteAverage" type="xs:float"/>
+                            <xs:element name="voteCount" type="xs:integer"/>
+                            <xs:element name="runtime" type="xs:integer"/>
+                            <xs:element name="certification" type="xs:string"/>
+                            <xs:element name="posterPath" type="xs:string"/>
+                            <xs:element name="budget" type="xs:integer"/>
+                            <xs:element name="tagline" type="xs:string"/>
+                            <xs:element name="genres">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="genre" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="id" type="xs:integer"/>
+                                                    <xs:element name="nom" type="xs:string"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="directors">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="director" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="id" type="xs:integer"/>
+                                                    <xs:element name="nom" type="xs:string"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="actors">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="actor" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="id" type="xs:integer"/>
+                                                    <xs:element name="nom" type="xs:string"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+
