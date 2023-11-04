@@ -132,21 +132,21 @@ public class Movie {
 
     @Override
     public String toString() {
-        return "id: " + getId() +
+        return //"id: " + getId() +
                 "\ntitle: " + getTitle() +
-                "\noriginal_title: " + getOriginalTitle() +
-                "\nrelease_date: " + getReleaseDate().toString() +
-                "\nstatus: " +getStatus() +
-                "\nvote_average: " + getVote_average() +
-                "\nvote_count: " + getVote_count() +
-                "\nruntime: " + getRuntime() +
-                "\ncertification: " + getCertification() +
-                "\nposter_path: " + getPoster_path() +
-                "\nbudget: " + getBudget() +
-                "\ntagline: " + getTagline() +
-                getGenresToString() +
-                getDirectorsToString() +
-                getActorsToString();
+                //"\noriginal_title: " + getOriginalTitle() +
+                //"\nrelease_date: " + getReleaseDate().toString() +
+                //"\nstatus: " +getStatus() +
+                "\nvote_average: " + getVote_average(); //+
+                //"\nvote_count: " + getVote_count() +
+                //"\nruntime: " + getRuntime() +
+                //"\ncertification: " + getCertification() +
+                //"\nposter_path: " + getPoster_path() +
+                //"\nbudget: " + getBudget() +
+                //"\ntagline: " + getTagline() +
+                //getGenresToString() +
+                //getDirectorsToString() +
+                //getActorsToString();
     }
 
     private String getGenresToString()

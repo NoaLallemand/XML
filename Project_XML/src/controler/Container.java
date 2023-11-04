@@ -6,27 +6,34 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.time.LocalDate;
+import java.util.Collections;
+import java.util.Objects;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
+
+import Modele.ComparatorFilm;
+
+import Modele.Acteur;
+import Modele.Genres;
+import Modele.Movie;
+import Modele.Realisateur;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-
-import Modele.*;
-
-import javax.annotation.processing.SupportedSourceVersion;
-
 public class Container {
     private static Container instance;
+    ////////////////////////////////////////////////////////////////////////////////////
+    private int NbrPegi13;
+    public int getNbrPegi13() {return NbrPegi13;}
+    public void setNbrPegi13(int nbrPegi13) {NbrPegi13 = nbrPegi13;}
+    ////////////////////////////////////////////////////////////////////////////////////
     private ArrayList<Movie> films = new ArrayList<Movie>();
 
     private Container() {
@@ -61,10 +68,13 @@ public class Container {
             bufferedReader.close();
             fileReader.close();
 
-            for(Movie m: films)
-            {
+            Collections.sort(films, new ComparatorFilm());
+
+            for (int i = 0; i < 10 && i < films.size(); i++) {
+                Movie m = films.get(i);
                 System.out.println(m.toString());
             }
+
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -125,6 +135,11 @@ public class Container {
                     film.setRuntime(dureefilm);
                     break;
                 case 8 :
+                    //on va regarder si c'est pegi 13 si ça les alors on stock
+                    if(Objects.equals(element, "PG-13"))
+                    {
+                        NbrPegi13++;
+                    }
                     film.setCertification(element);
                     break;
                 case 9 :
@@ -370,5 +385,6 @@ public class Container {
             e.printStackTrace();
         }
     }
+
 
 }
