@@ -34,7 +34,7 @@ public class Container {
     public int getNbrPegi13() {return NbrPegi13;}
     public void setNbrPegi13(int nbrPegi13) {NbrPegi13 = nbrPegi13;}
     ////////////////////////////////////////////////////////////////////////////////////
-    private ArrayList<Movie> films = new ArrayList<Movie>();
+    private ArrayList<Movie> films = new ArrayList();
 
     private Container() {
     }
@@ -69,12 +69,7 @@ public class Container {
             fileReader.close();
 
             Collections.sort(films, new ComparatorFilm());
-
-            for (int i = 0; i < 10 && i < films.size(); i++) {
-                Movie m = films.get(i);
-                System.out.println(m.toString());
-            }
-
+            //afficheDixMeilleursFilms();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -278,7 +273,9 @@ public class Container {
 
                 // Ajoutez les données du film comme des éléments à l'élément "movie"
                 Element idElement = document.createElement("id");
-                idElement.appendChild(document.createTextNode(String.valueOf(film.getId())));
+                if(film.getId() != -1) {
+                    idElement.appendChild(document.createTextNode(String.valueOf(film.getId())));
+                }
                 movieElement.appendChild(idElement);
 
                 Element titleElement = document.createElement("title");
@@ -302,11 +299,15 @@ public class Container {
                 movieElement.appendChild(voteAverageElement);
 
                 Element voteCountElement = document.createElement("voteCount");
-                voteCountElement.appendChild(document.createTextNode(String.valueOf(film.getVote_count())));
+                if(film.getVote_count() != -1) {
+                    voteCountElement.appendChild(document.createTextNode(String.valueOf(film.getVote_count())));
+                }
                 movieElement.appendChild(voteCountElement);
 
                 Element runtimeElement = document.createElement("runtime");
-                runtimeElement.appendChild(document.createTextNode(String.valueOf(film.getRuntime())));
+                if(film.getRuntime() != -1) {
+                    runtimeElement.appendChild(document.createTextNode(String.valueOf(film.getRuntime())));
+                }
                 movieElement.appendChild(runtimeElement);
 
                 Element certificationElement = document.createElement("certification");
@@ -318,7 +319,9 @@ public class Container {
                 movieElement.appendChild(posterPathElement);
 
                 Element budgetElement = document.createElement("budget");
-                budgetElement.appendChild(document.createTextNode(String.valueOf(film.getBudget())));
+                if(film.getBudget() != -1) {
+                    budgetElement.appendChild(document.createTextNode(String.valueOf(film.getBudget())));
+                }
                 movieElement.appendChild(budgetElement);
 
                 Element taglineElement = document.createElement("tagline");
@@ -331,7 +334,9 @@ public class Container {
                     listGenresElement.appendChild(genreElement);
 
                     Element idGenreElement = document.createElement("id");
-                    idGenreElement.appendChild(document.createTextNode(String.valueOf(genre.id)));
+                    if(genre.id != -1) {
+                        idGenreElement.appendChild(document.createTextNode(String.valueOf(genre.id)));
+                    }
                     genreElement.appendChild(idGenreElement);
 
                     Element nomGenreElement = document.createElement("nom");
@@ -346,7 +351,9 @@ public class Container {
                     listRealElement.appendChild(directorElement);
 
                     Element idDirectorElement = document.createElement("id");
-                    idDirectorElement.appendChild(document.createTextNode(String.valueOf(real.id)));
+                    if(real.id != -1) {
+                        idDirectorElement.appendChild(document.createTextNode(String.valueOf(real.id)));
+                    }
                     directorElement.appendChild(idDirectorElement);
 
                     Element nomDirectorElement = document.createElement("nom");
@@ -361,7 +368,9 @@ public class Container {
                     listActeursElement.appendChild(acteurElement);
 
                     Element idActeurElement = document.createElement("id");
-                    idActeurElement.appendChild(document.createTextNode(String.valueOf(acteur.id)));
+                    if(acteur.id != -1) {
+                        idActeurElement.appendChild(document.createTextNode(String.valueOf(acteur.id)));
+                    }
                     acteurElement.appendChild(idActeurElement);
 
                     Element nomActeurElement = document.createElement("nom");
@@ -386,5 +395,12 @@ public class Container {
         }
     }
 
-
+    private void afficheDixMeilleursFilms() {
+        if(films.size() >= 10) {
+            for(int i=0; i<10; i++) {
+                Movie m = films.get(i);
+                System.out.println(m.toString());
+            }
+        }
+    }
 }

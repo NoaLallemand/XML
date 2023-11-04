@@ -16,7 +16,7 @@ public class Main {
 
         System.out.println(Container.getInstance().getNbrPegi13());
 
-        try {
+        /*try {
             SAXParserFactory factory = SAXParserFactory.newInstance();
             factory.setValidating(true);
             factory.setNamespaceAware(true);
@@ -36,6 +36,6 @@ public class Main {
         catch (ParserConfigurationException | IOException e) {
             //throw new RuntimeException(e);
             System.out.println(e.getMessage());
-        }
+        }*/
     }
 }
