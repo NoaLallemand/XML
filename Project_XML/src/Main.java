@@ -9,7 +9,7 @@ public class Main {
         System.out.println(Container.getInstance().getNbrPegi13());
 
         MySAXParser ps = new MySAXParser();
-        ps.parse("movies.xml", "movies.xsd");
-        //ps.parseDTD();
+        //ps.parseWithDtd("movies.xml");
+        ps.parseWithXsd("movies.xml", "movies.xsd");
     }
 }

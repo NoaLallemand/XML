@@ -6,7 +6,7 @@
                 <xs:element name="movie" maxOccurs="unbounded" minOccurs="0">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="id" type="xs:integer"/>
+                            <xs:element name="id" type="xs:string"/>
                             <xs:element name="title" type="xs:string"/>
                             <xs:element name="originalTitle" type="xs:string"/>
                             <xs:element name="releaseDate" type="xs:date"/>
@@ -19,8 +19,8 @@
                                 </xs:simpleType>
                             </xs:element>
                             <xs:element name="voteAverage" type="xs:float"/>
-                            <xs:element name="voteCount" type="xs:integer"/>
-                            <xs:element name="runtime" type="xs:integer"/>
+                            <xs:element name="voteCount" type="xs:string"/>
+                            <xs:element name="runtime" type="xs:string"/>
                             <xs:element name="certification">
                                 <xs:simpleType>
                                     <xs:restriction base="xs:string">
@@ -35,7 +35,7 @@
                                 </xs:simpleType>
                             </xs:element>
                             <xs:element name="posterPath" type="xs:string"/>
-                            <xs:element name="budget" type="xs:integer"/>
+                            <xs:element name="budget" type="xs:string"/>
                             <xs:element name="tagline" type="xs:string"/>
                             <xs:element name="genres">
                                 <xs:complexType>
@@ -43,12 +43,13 @@
                                         <xs:element name="genre" minOccurs="0" maxOccurs="unbounded">
                                             <xs:complexType>
                                                 <xs:sequence>
-                                                    <xs:element name="id" type="xs:integer"/>
+                                                    <xs:element name="id" type="xs:string"/>
                                                     <xs:element name="nom" type="xs:string"/>
                                                 </xs:sequence>
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
+                                    <xs:attribute name="numberChild" type="xs:integer"/>
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="directors">
@@ -57,12 +58,13 @@
                                         <xs:element name="director" minOccurs="0" maxOccurs="unbounded">
                                             <xs:complexType>
                                                 <xs:sequence>
-                                                    <xs:element name="id" type="xs:integer"/>
+                                                    <xs:element name="id" type="xs:string"/>
                                                     <xs:element name="nom" type="xs:string"/>
                                                 </xs:sequence>
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
+                                    <xs:attribute name="numberChild" type="xs:integer"/>
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="actors">
@@ -71,13 +73,14 @@
                                         <xs:element name="actor" minOccurs="0" maxOccurs="unbounded">
                                             <xs:complexType>
                                                 <xs:sequence>
-                                                    <xs:element name="id" type="xs:integer"/>
+                                                    <xs:element name="id" type="xs:string"/>
                                                     <xs:element name="nom" type="xs:string"/>
                                                     <xs:element name="personnage" type="xs:string"/>
                                                 </xs:sequence>
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
+                                    <xs:attribute name="numberChild" type="xs:integer"/>
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>

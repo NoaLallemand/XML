@@ -11,7 +11,7 @@ import javax.xml.validation.SchemaFactory;
 import java.io.IOException;
 
 public class MySAXParser {
-    public void parse(String xmlFilePath, String xsdFilePath) {
+    public void parseWithXsd(String xmlFilePath, String xsdFilePath) {
         try {
             SAXParserFactory factory = SAXParserFactory.newInstance();
             factory.setValidating(false);
@@ -34,13 +34,14 @@ public class MySAXParser {
         }
     }
 
-    public void parseDTD() {
+    public void parseWithDtd(String xmlPathFile) {
         try {
             SAXParserFactory factory = SAXParserFactory.newInstance();
             factory.setValidating(true);
             factory.setNamespaceAware(true);
             SAXParser sp = factory.newSAXParser();
-            sp.parse("movies.xml" , new MovieHandler());
+
+            sp.parse(xmlPathFile , new MovieHandler());
         }
         catch (ParserConfigurationException e) {
             throw new RuntimeException(e);
