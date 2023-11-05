@@ -1,0 +1,53 @@
+h1 {
+    font-size: 24px;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+.titre{
+    text-align: center;
+}
+
+/* Style pour chaque film */
+/* Style pour chaque film */
+.movie {
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0 10px 20px 0; /* Ajoute une marge à droite et en bas de chaque film */
+    background-color: #ad1126;
+    width: 300px;
+    
+    float: left; /* Fait flotter les div à gauche pour les aligner horizontalement */
+}
+
+.movie strong {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.movie p {
+    margin: 5px 0;
+}
+
+/* Style pour la liste de genres, réalisateurs et acteurs */
+.movie ul {
+    list-style: none;
+    padding: 0;
+}
+
+.movie ul li {
+    margin-bottom: 5px;
+}
+
+.actor-list {
+    display: none;
+}
+
+.actor-toggle {
+    cursor: pointer;
+}
+
+
