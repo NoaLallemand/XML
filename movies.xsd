@@ -3,7 +3,7 @@
     <xs:element name="movies">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="movie" maxOccurs="unbounded">
+                <xs:element name="movie" maxOccurs="unbounded" minOccurs="0">
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element name="id" type="xs:integer"/>
