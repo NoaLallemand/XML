@@ -379,6 +379,10 @@ public class Container {
                     Element nomActeurElement = document.createElement("nom");
                     nomActeurElement.appendChild(document.createTextNode(acteur.nom));
                     acteurElement.appendChild(nomActeurElement);
+
+                    Element nompersoElement = document.createElement("personnage");
+                    nompersoElement.appendChild(document.createTextNode(acteur.personnage));
+                    acteurElement.appendChild(nompersoElement);
                 }
                 movieElement.appendChild(listActeursElement);
             }
