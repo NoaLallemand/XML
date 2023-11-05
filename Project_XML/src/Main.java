@@ -16,7 +16,7 @@ public class Main {
 
         System.out.println(Container.getInstance().getNbrPegi13());
 
-        /*try {
+        try {
             SAXParserFactory factory = SAXParserFactory.newInstance();
             factory.setValidating(true);
             factory.setNamespaceAware(true);
@@ -24,7 +24,7 @@ public class Main {
 
             try {
                 factory.setSchema(schemaFactory.newSchema(new Source[] {
-                        new StreamSource("xmlSchemaDefinition.xsd")
+                        new StreamSource("movies.xsd")
                 }));
                 SAXParser sp = factory.newSAXParser();
                 sp.getXMLReader().parse("movies.xml");
@@ -34,8 +34,7 @@ public class Main {
             }
         }
         catch (ParserConfigurationException | IOException e) {
-            //throw new RuntimeException(e);
             System.out.println(e.getMessage());
-        }*/
+        }
     }
 }

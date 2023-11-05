@@ -69,7 +69,7 @@ public class Container {
             fileReader.close();
 
             Collections.sort(films, new ComparatorFilm());
-            //afficheDixMeilleursFilms();
+            afficheDixMeilleursFilms();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -257,13 +257,16 @@ public class Container {
             // Il prend en charge la création d'éléments, d'attributs, de texte
             DocumentBuilder builder = factory.newDocumentBuilder();
 
-            // Une fois que vous avez un DocumentBuilder, vous utilisez cette instance pour créer un nouveau
-            // document vide (Document). Ce document est l'objet central avec lequel vous travaillez
-            // pour créer la structure du fichier XML. Vous ajoutez des éléments, des attributs et d'autres nœuds à ce document.
+            // Une fois qu'on a un DocumentBuilder, on utilise cette instance pour créer un nouveau
+            // document vide (Document). Ce document est l'objet central avec lequel on travaille
+            // pour créer la structure du fichier XML.
             Document document = builder.newDocument();
+            document.appendChild(document.createProcessingInstruction("xml-stylesheet", "type=\"text/xsl\" href=\"styles.xsl\""));
 
-            // ici on stocke des film donc voilas
+            // ici on stocke des film...
             Element rootElement = document.createElement("movies");
+            rootElement.setAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
+            rootElement.setAttribute("xsi:noNamespaceSchemaLocation", "movies.xsd");
             document.appendChild(rootElement);
 
             //ici pour chaque film on va alors ajouter element par element
@@ -271,7 +274,7 @@ public class Container {
                 Element movieElement = document.createElement("movie");
                 rootElement.appendChild(movieElement);
 
-                // Ajoutez les données du film comme des éléments à l'élément "movie"
+                //On ajoute les données du film : des éléments enfants de l'élément "movie"
                 Element idElement = document.createElement("id");
                 if(film.getId() != -1) {
                     idElement.appendChild(document.createTextNode(String.valueOf(film.getId())));
