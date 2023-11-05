@@ -17,7 +17,9 @@
                     <xsl:for-each select="movies/movie">
                         <div class="movie" style="min-height: 150px;">
                             <strong class="movie-title"><xsl:value-of select="title" /></strong> (<xsl:value-of select="releaseDate" />)
-                            <button class="see-more-button">Voir plus</button>
+                        <br></br>
+                            <br></br>
+                            <button class="see-more-button">Voir Plus</button>
                             <ul class="hidden">
                                 <li>
                                     <p><xsl:value-of select="originalTitle" /></p>
