@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="movies" type="moviesType"/>
+  <xs:complexType name="genreType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="id"/>
+      <xs:element type="xs:string" name="nom"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="genresType">
+    <xs:sequence>
+      <xs:element type="genreType" name="genre" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="directorType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="id"/>
+      <xs:element type="xs:string" name="nom"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="directorsType" mixed="true">
+    <xs:sequence>
+      <xs:element type="directorType" name="director" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="actorType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="id"/>
+      <xs:element type="xs:string" name="nom"/>
+      <xs:element type="xs:string" name="personnage"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="actorsType" mixed="true">
+    <xs:sequence>
+      <xs:element type="actorType" name="actor" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="movieType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="id"/>
+      <xs:element type="xs:string" name="title"/>
+      <xs:element type="xs:string" name="originalTitle"/>
+      <xs:element type="xs:string" name="releaseDate"/>
+      <xs:element name="status">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Released"/>
+            <xs:enumeration value="Planned"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element type="xs:string" name="voteAverage"/>
+      <xs:element type="xs:string" name="voteCount"/>
+      <xs:element type="xs:string" name="runtime"/>
+      <xs:element name="certification">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value=""/>
+            <xs:enumeration value="R"/>
+            <xs:enumeration value="PG-13"/>
+            <xs:enumeration value="PG"/>
+            <xs:enumeration value="NR"/>
+            <xs:enumeration value="G"/>
+            <xs:enumeration value="NC-17"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element type="xs:string" name="posterPath"/>
+      <xs:element type="xs:string" name="budget"/>
+      <xs:element type="xs:string" name="tagline"/>
+      <xs:element type="genresType" name="genres"/>
+      <xs:element type="directorsType" name="directors"/>
+      <xs:element type="actorsType" name="actors"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="moviesType">
+    <xs:sequence>
+      <xs:element type="movieType" name="movie" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

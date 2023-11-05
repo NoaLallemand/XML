@@ -22,6 +22,7 @@ import org.w3c.dom.DocumentType;
 import org.w3c.dom.Element;
 
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
@@ -264,12 +265,6 @@ public class Container {
             Document document = builder.newDocument();
             document.appendChild(document.createProcessingInstruction("xml-stylesheet", "type=\"text/xsl\" href=\"styles.xsl\""));
 
-            /*String doctype = "!DOCTYPE movies SYSTEM \"movies.dtd\"";
-            document.appendChild(document.createElement(doctype));*/
-
-            /*DocumentType doctype = document.getImplementation().createDocumentType("movies", null, "movies.dtd");
-            document.appendChild(doctype);*/
-
             // ici on stocke des film...
             Element rootElement = document.createElement("movies");
             rootElement.setAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
@@ -339,6 +334,7 @@ public class Container {
                 movieElement.appendChild(taglineElement);
 
                 Element listGenresElement = document.createElement("genres");
+                listGenresElement.setAttribute("numberChild", String.valueOf(film.getGenres().size()));
                 for(Genres genre: film.getGenres()) {
                     Element genreElement = document.createElement("genre");
                     listGenresElement.appendChild(genreElement);
@@ -356,6 +352,7 @@ public class Container {
                 movieElement.appendChild(listGenresElement);
 
                 Element listRealElement = document.createElement("directors");
+                listRealElement.setAttribute("numberChild", String.valueOf(film.getDirectors().size()));
                 for(Realisateur real: film.getDirectors()) {
                     Element directorElement = document.createElement("director");
                     listRealElement.appendChild(directorElement);
@@ -373,6 +370,7 @@ public class Container {
                 movieElement.appendChild(listRealElement);
 
                 Element listActeursElement = document.createElement("actors");
+                listActeursElement.setAttribute("numberChild", String.valueOf(film.getActors().size()));
                 for(Acteur acteur: film.getActors()) {
                     Element acteurElement = document.createElement("actor");
                     listActeursElement.appendChild(acteurElement);
@@ -397,6 +395,10 @@ public class Container {
             // Enregistrez le document XML dans un fichier
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
+
+            DocumentType doctype = document.getImplementation().createDocumentType("movies", null, "movies.dtd");
+            transformer.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, doctype.getSystemId());
+
             DOMSource source = new DOMSource(document);
             StreamResult result = new StreamResult(new File("movies.xml"));
             transformer.transform(source, result);

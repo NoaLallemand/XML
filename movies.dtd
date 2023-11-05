@@ -1,0 +1,26 @@
+<!ELEMENT movies (movie)*>
+<!ATTLIST movies xmlns:xsi CDATA #FIXED "http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation CDATA #IMPLIED
+<!ELEMENT movie (id, title, originalTitle, releaseDate, status, voteAverage, voteCount, runtime, certification, posterPath, budget, tagline, genres, directors, actors)>
+<!ELEMENT id (#PCDATA | EMPTY)>
+<!ELEMENT title (#PCDATA | EMPTY)>
+<!ELEMENT originalTitle (#PCDATA | EMPTY)>
+<!ELEMENT releaseDate (#PCDATA | EMPTY)>
+<!ELEMENT status (#PCDATA | EMPTY)>
+<!ELEMENT voteAverage (#PCDATA | EMPTY)>
+<!ELEMENT voteCount (#PCDATA | EMPTY)>
+<!ELEMENT runtime (#PCDATA | EMPTY)>
+<!ELEMENT certification (#PCDATA | EMPTY)>
+<!ELEMENT posterPath (#PCDATA | EMPTY)>
+<!ELEMENT budget (#PCDATA | EMPTY)>
+<!ELEMENT tagline (#PCDATA | EMPTY)>
+<!ELEMENT genres (genre)*>
+<!ATTLIST genres numberChild CDATA #REQUIRED>
+<!ELEMENT genre (id, nom)>
+<!ELEMENT directors (director)*>
+<!ATTLIST directors numberChild CDATA #REQUIRED>
+<!ELEMENT director (id, nom)>
+<!ELEMENT actors (actor)*>
+<!ATTLIST actors numberChild CDATA #REQUIRED>
+<!ELEMENT actor (id, nom, personnage)>
+<!ELEMENT nom (#PCDATA)>
+<!ELEMENT personnage (#PCDATA)>
