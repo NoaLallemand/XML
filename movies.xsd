@@ -10,11 +10,30 @@
                             <xs:element name="title" type="xs:string"/>
                             <xs:element name="originalTitle" type="xs:string"/>
                             <xs:element name="releaseDate" type="xs:date"/>
-                            <xs:element name="status" type="xs:string"/>
+                            <xs:element name="status">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="Released"/>
+                                        <xs:enumeration value="Planned"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
                             <xs:element name="voteAverage" type="xs:float"/>
                             <xs:element name="voteCount" type="xs:integer"/>
                             <xs:element name="runtime" type="xs:integer"/>
-                            <xs:element name="certification" type="xs:string"/>
+                            <xs:element name="certification">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value=""/>
+                                        <xs:enumeration value="R"/>
+                                        <xs:enumeration value="PG-13"/>
+                                        <xs:enumeration value="PG"/>
+                                        <xs:enumeration value="NR"/>
+                                        <xs:enumeration value="G"/>
+                                        <xs:enumeration value="NC-17"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
                             <xs:element name="posterPath" type="xs:string"/>
                             <xs:element name="budget" type="xs:integer"/>
                             <xs:element name="tagline" type="xs:string"/>
@@ -54,6 +73,7 @@
                                                 <xs:sequence>
                                                     <xs:element name="id" type="xs:integer"/>
                                                     <xs:element name="nom" type="xs:string"/>
+                                                    <xs:element name="personnage" type="xs:string"/>
                                                 </xs:sequence>
                                             </xs:complexType>
                                         </xs:element>

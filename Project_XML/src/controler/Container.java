@@ -18,6 +18,7 @@ import Modele.Genres;
 import Modele.Movie;
 import Modele.Realisateur;
 import org.w3c.dom.Document;
+import org.w3c.dom.DocumentType;
 import org.w3c.dom.Element;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -262,6 +263,12 @@ public class Container {
             // pour créer la structure du fichier XML.
             Document document = builder.newDocument();
             document.appendChild(document.createProcessingInstruction("xml-stylesheet", "type=\"text/xsl\" href=\"styles.xsl\""));
+
+            /*String doctype = "!DOCTYPE movies SYSTEM \"movies.dtd\"";
+            document.appendChild(document.createElement(doctype));*/
+
+            /*DocumentType doctype = document.getImplementation().createDocumentType("movies", null, "movies.dtd");
+            document.appendChild(doctype);*/
 
             // ici on stocke des film...
             Element rootElement = document.createElement("movies");
